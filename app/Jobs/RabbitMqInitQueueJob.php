@@ -16,7 +16,7 @@ class RabbitMqInitQueueJob implements ShouldQueue
 {
     use Queueable;
 
-    public $tries = 1;
+    public int $tries = 1;
 
     public function handle(): void
     {
