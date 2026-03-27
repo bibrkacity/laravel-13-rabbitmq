@@ -10,7 +10,7 @@
 
 ## Installation
 
-1. Clone this repository () and `cd` into root folder ( *your-path*/laravel-13-rabbitmq)
+1. Clone this repository (https://github.com/bibrkacity/laravel-13-rabbitmq.git) and `cd` into root folder (*your-path*/laravel-13-rabbitmq)
 2. Copy `.env.example` to `.env`
 3. Run `composer install`
 4. Run `./vendor/bin/sail up`
@@ -20,7 +20,7 @@
 
 ## Testing sending and receiving messages
 
-Open url http://localhost:8080/test and you will see the form of sending the text message.
+Open the url http://localhost:8080/test and you will see the form of sending the text message.
 
 After sending the message, you will see the message in the storage/laravel.log file
 
@@ -46,7 +46,7 @@ The queue "rabbitmq_test" is not based on the rabbitmq queue driver. It uses a `
 
 This query runs by command `app/Console/Commands/RunRabbitMqWaiting.php`  with timeout=0, it means unlimited, and dispatches the job `app/Jobs/RabbitMqInitQueueJob.php`. This query is monitoring by the `app/Console/Commands/RabbitMqMonitor.php` command every 3 minutes by schedule. If the query fails, the command will rerun it and dispatch the job `app/Jobs/RabbitMqInitQueueJob.php`. 
 
-The local experiment shows that this queue can work the several hours.
+The local experiment shows that this queue can work for several hours.
 
 The job `app/Jobs/RabbitMqInitQueueJob.php` is responsible for receiving messages from RabbitMQ queue with name "queue_name". It consumes messages from the queue and runs callback closure:
 
