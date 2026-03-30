@@ -33,7 +33,7 @@ class RabbitMqService
         $connection->close();
     }
 
-    public static function startWaiting(): string
+    public static function startWaiting(): void
     {
         $connection = RabbitMqService::initConnection();
         $channel = $connection->channel();
