@@ -17,10 +17,11 @@
 5. Run `./vendor/bin/sail artisan migrate`
 6. Run `./vendor/bin/sail artisan schedule:work` command
 7. Run `./vendor/bin/sail artisan app:rabbit` command in another terminal
+8. Run `./vendor/bin/sail artisan queue:work --queue=rabbitmq_test --timeout=0` command in the third terminal
 
 ## Testing sending and receiving messages
 
-Open the url http://localhost:8080/test and you will see the form of sending the text message.
+Open the url http://localhost:8080/test, and you will see the form of sending the text message.
 
 After sending the message, you will see the message in the storage/laravel.log file
 
@@ -44,7 +45,7 @@ If you use Ubuntu or Mint, you can use the RabbitMQ console by running the follo
 There is a queue with name `config('database.connections.rabbitmq.queue')` ("rabbitmq_test") for run the job for receiving messages from RabbitMQ queue with name "queue_name". 
 The queue "rabbitmq_test" is not based on the rabbitmq queue driver. It uses a `database` driver, may be other.
 
-This query runs by command `app/Console/Commands/RunRabbitMqWaiting.php`  with timeout=0, it means unlimited, and dispatches the job `app/Jobs/RabbitMqInitQueueJob.php`. This query is monitoring by the `app/Console/Commands/RabbitMqMonitor.php` command every 3 minutes by schedule. If the query fails, the command will rerun it and dispatch the job `app/Jobs/RabbitMqInitQueueJob.php`. 
+This query runs by command `./vendor/bin/sail artisan queue:work --queue=rabbitmq_test --timeout=0`  with timeout=0, it means unlimited, and dispatches the job `app/Jobs/RabbitMqInitQueueJob.php`. This query is monitoring by the `app/Console/Commands/RabbitMqMonitor.php` command every minute by schedule. If the query fails, the command will log the error message. 
 
 The local experiment shows that this queue can work for several hours.
 

@@ -6,9 +6,10 @@ use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log;
 
 #[Signature('app:rabbit-mq-monitor')]
-#[Description('Run queue:monitor command and check if the queue is empty. If it is empty, run the command "app:rabbit')]
+#[Description('Run queue:monitor command and check if the queue is fail. If fail logs an error')]
 class RabbitMqMonitor extends Command
 {
     /**
@@ -23,8 +24,7 @@ class RabbitMqMonitor extends Command
         $size = (int)($json[0]['size']);
 
         if ($size == 0) {
-            Artisan::call('app:rabbit');
+            Log::error('The queue "'.$queue.'" crashed');
         }
-
     }
 }
