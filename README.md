@@ -16,8 +16,9 @@
 4. Run `./vendor/bin/sail up`
 5. Run `./vendor/bin/sail artisan migrate`
 6. Run `./vendor/bin/sail artisan schedule:work` command
-7. Run `./vendor/bin/sail artisan app:rabbit` command in another terminal
-8. Run `./vendor/bin/sail artisan queue:work --queue=rabbitmq_test --timeout=0` command in the third terminal
+7. Run `./vendor/bin/sail artisan queue:work --queue=rabbitmq_test --timeout=0` command in another terminal
+8. Run `./vendor/bin/sail artisan app:rabbit` command in third terminal
+
 
 ## Testing sending and receiving messages
 

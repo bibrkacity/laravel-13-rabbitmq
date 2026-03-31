@@ -15,6 +15,9 @@ class RabbitMqInitQueueJob implements ShouldQueue
 
     public int $tries = 1;
 
+    /**
+     * @throws \Exception
+     */
     public function handle(): void
     {
         RabbitMqService::startWaiting();
